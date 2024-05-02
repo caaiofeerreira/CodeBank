@@ -4,6 +4,7 @@ import java.time.ZoneId;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
+
 public class CodeBank {
     public static void main(String[] args) {
         ZoneId saoPauloZone = ZoneId.of("America/Sao_Paulo");
@@ -13,9 +14,8 @@ public class CodeBank {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Nome do titular: ");
-        String titular = scanner.nextLine();
-        String tipoConta = "Corrente";
-        double saldo = 1500.00;
+        Titular titular = new Titular();
+        titular.setTitular(scanner.nextLine());
 
         int opcao = 0;
 
@@ -30,12 +30,12 @@ public class CodeBank {
         """;
 
         System.out.println("**************************");
-        System.out.println("\nNome do titular: " + titular);
-        System.out.println("Tipo de conta: " + tipoConta);
-        System.out.println("Saldo atual: R$" + saldo);
+        System.out.println("\nNome do titular: " + titular.getTitular());
+        System.out.println("Tipo de conta: " + titular.getTipoConta());
+        System.out.println("Saldo atual: R$" + titular.getSaldo());
         System.out.println("\n**************************");
 
-        Account account = new Account(saldo);
+        Account account = new Account(titular.getSaldo());
         Scanner reading = new Scanner(System.in);
         Scanner chavePix = new Scanner(System.in);
 
@@ -61,6 +61,16 @@ public class CodeBank {
                 case 4:
                     System.out.println("Digite a chave-Pix: ");
                     String chave = chavePix.nextLine();
+                    if (chave.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+                        System.out.println("Chave PIX válida (Email).");
+                    } else if (chave.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+                        System.out.println("Chave PIX válida (CPF).");
+                    } else if (chave.matches("\\(?\\d{2}\\)?\\s?\\d{5}-\\d{4}")) {
+                        System.out.println("Chave PIX válida (Celular).");
+                    } else {
+                        System.out.println("Chave PIX inválida. A chave PIX deve ser um Email, CPF ou Celular.");
+                        break;
+                    }
                     System.out.println("\nDigite o valor que deseja enviar:");
                     double valorPix = reading.nextDouble();
                     System.out.println("\nConfirme a transação via Pix para a chave " + chave + " no valor de R$" + valorPix + " (S/N):");
@@ -70,7 +80,7 @@ public class CodeBank {
                             System.out.println("Saldo insuficiente para realizar o Pix.");
                         } else {
                             account.pix(valorPix);
-                            System.out.println("\nPix de R$" + valorPix + " para a chave Pix " + chave + " realizado com sucesso!");
+                            System.out.println("\nPix de R$" + valorPix + " para a chave " + chave + " realizado com sucesso!");
                             System.out.println("Saldo atualizado: R$" + account.getBalance());
                             System.out.println("\n");
                         }
