@@ -1,3 +1,5 @@
+package codebank.titular;
+
 public class Titular {
     private String titular;
     private String tipoConta = "Corrente";

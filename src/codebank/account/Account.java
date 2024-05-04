@@ -1,3 +1,7 @@
+package codebank.account;
+
+import codebank.transaction.Transaction;
+
 import java.util.ArrayList;
 import java.util.Date;
 

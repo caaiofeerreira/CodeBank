@@ -1,3 +1,9 @@
+package codebank;
+
+import codebank.account.Account;
+import codebank.titular.Titular;
+import codebank.transaction.Transaction;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.ZoneId;

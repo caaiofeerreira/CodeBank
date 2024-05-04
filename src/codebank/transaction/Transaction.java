@@ -1,3 +1,5 @@
+package codebank.transaction;
+
 import java.util.Date;
 
 public class Transaction {
