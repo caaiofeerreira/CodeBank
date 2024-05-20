@@ -3,7 +3,7 @@ package codebank.titular;
 public class Titular {
     private String titular;
     private String tipoConta = "Corrente";
-    double saldo = 1500.00;
+    private double saldo = 1500.00;
 
     public String getTitular() {
         return titular;

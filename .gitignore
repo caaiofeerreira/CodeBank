@@ -1,10 +1,9 @@
 ### IntelliJ IDEA ###
 .idea/
-*iml/
-CodeBank.iml/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+*iml
 
 ### Eclipse ###
 .apt_generated

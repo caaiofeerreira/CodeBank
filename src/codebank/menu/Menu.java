@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Menu {
 
     private Account account;
-    Scanner scanner;
+    private Scanner scanner;
 
     public Menu(Scanner scanner, Account account) {
         this.scanner = scanner;
@@ -78,6 +78,7 @@ public class Menu {
 
         System.out.println("Digite a chave-Pix: ");
         String chave = chavePix.nextLine();
+
         if (chave.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
             System.out.println("Chave PIX válida (Email).");
         } else if (chave.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
@@ -86,8 +87,9 @@ public class Menu {
             System.out.println("Chave PIX válida (Celular).");
         } else {
             System.out.println("Chave PIX inválida. A chave PIX deve ser um Email, CPF ou Celular.");
-
+            return;
         }
+
         System.out.println("\nDigite o valor que deseja enviar:");
         double valorPix = reading.nextDouble();
         System.out.println("\nConfirme a transação via Pix para a chave " + chave + " no valor de R$" + valorPix + " (S/N):");
